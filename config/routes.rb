@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get 'new', to: 'games#new'
+  root to: 'games#new'
+  get 'reset', to: 'games#reset'
   post 'score', to: 'games#score'
 end

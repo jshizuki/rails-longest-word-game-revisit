@@ -7,6 +7,11 @@ class GamesController < ApplicationController
     @letters = (@consonants + @vowels).shuffle
   end
 
+  def reset
+    session[:scores] = []
+    redirect_to root_path
+  end
+
   def score
     @word = params[:word]
     url = "https://wagon-dictionary.herokuapp.com/#{@word}"

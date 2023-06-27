@@ -2,5 +2,6 @@
   <h1>Result</h1>
   <p><%= @result %></p>
   <p>Current score: <%= @current_score %></p>
-  <%= link_to 'Play again', new_path, class: 'link' %>
+  <p><%= link_to 'Play again', root_path, class: 'link' %> ||
+    <%= link_to 'Reset score', reset_path, class: 'link' %></p>
 </div>
