@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+p {
+  font-size: x-large;
+}
+
+.letter {
+  font-size: xx-large;
+  color: white;
+  background-color: darkturquoise;
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  line-height: 80px;
+  box-shadow: 1px 1px 3px gray;
+  margin: 10px 10px 10px 0px;
+}
