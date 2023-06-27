@@ -6,6 +6,7 @@
   <p>What is the longest word you can find?</p>
   <form action='score' method='post' data-turbo='false'>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%# Below creates a params for letters that can be passed to the score method %>
     <%= hidden_field_tag :letters, @letters %>
     <div class='input-group'>
       <input class='form-control form-control-lg' type='text' name='word'>
