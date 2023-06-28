@@ -1,9 +1,9 @@
-# require 'open-uri'
+require 'open-uri'
 
 class GamesController < ApplicationController
   def new
-    @vowels = %w[a e i o u].sample(3)
-    @consonants = (('a'..'z').to_a - @vowels).sample(7)
+    @vowels = Array.new(3) { %w[a e i o u].sample }
+    @consonants = Array.new(7) { (('a'..'z').to_a - @vowels).sample }
     @letters = (@consonants + @vowels).shuffle
   end
 
@@ -16,7 +16,10 @@ class GamesController < ApplicationController
     @word = params[:word]
     url = "https://wagon-dictionary.herokuapp.com/#{@word}"
     data = JSON.parse(URI.open(url).read)
-    match_or_not = @word.downcase.chars.all? { |letter| params[:letters].include?(letter) }
+    match_or_not = @word.downcase.chars.all? do |letter|
+      params[:letters].count(letter) >= @word.count(letter)
+    end
+
     @result = if data['found'] && match_or_not
                 "Congratulations! #{@word.upcase} is a valid English word!"
               elsif data['found'] && !match_or_not
@@ -30,6 +33,5 @@ class GamesController < ApplicationController
     session[:scores] ||= []
     session[:scores] << data['length'] if data['found'] && match_or_not
     @current_score = session[:scores].sum
-    # redirect_to new_game_path
   end
 end
